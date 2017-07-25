@@ -6,7 +6,6 @@ require 'cunn'
 require 'image'
 require 'torchzlib'
 
-debugger = require'fb.debugger'
 local cjson = require('cjson') 
 local t = require './transforms.lua'
 local tds = require 'tds'
@@ -16,15 +15,17 @@ util = require '../utils/util.lua'
 threads.Threads.serialization('threads.sharedserialize')
 
 opt = {
-   input           = '../vqa1_data/train_val_unique_img_fn.json',  
-   imgroot         = '/temp/ilija/fast/ms_coco_images/',
-   model           = '../resnet_models/resnext_101_64x4d.t7',
-   outdir          = '../resnet_features/resnext101_448_whole/trainval2014/', 
+   input           = './train_val_unique_img_fn.json' 
+
+   -- folder containing train2014, val2014, and test2015 directories 
+   imgroot         = '/temp/ilija/fast/ms_coco_images/',   
+   model           = '../resnet_models/resnet-152.t7',
+   outdir          = '../resnet_features/trainval2014/', 
    imgsize         = 448,
    region          =  14,
    bsz             = 50,
    nthreads        =  10, 
-   num_gpus        =   1,
+   num_gpus        =   3,
    rnd_seed        = 139,
    compress_factor =   0,
 }
@@ -95,13 +96,12 @@ print(nimgs)
 
 local model = torch.load(opt.model)
 
--- model:remove(11)
--- model:remove(10)
--- model:remove(9)
--- model.modules[8].modules[3]:remove(3)
--- model = model:cuda()
--- print(model)
-debugger.enter()
+model:remove(11)
+model:remove(10)
+model:remove(9)
+model.modules[8].modules[3]:remove(3)
+model = model:cuda()
+print(model)
 
 local sample = torch.zeros(2,3, opt.imgsize, opt.imgsize):cuda()
 optnet.optimizeMemory(model, sample, {mode='inference', inplace=true, reuseBuffers=true, removeGradParams=true})
