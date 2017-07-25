@@ -6,7 +6,7 @@ Download and extract the VQAv2 data from:
 * [Train answers](http://visualqa.org/data/mscoco/vqa/v2_Annotations_Train_mscoco.zip)
 * [Val answers](http://visualqa.org/data/mscoco/vqa/v2_Annotations_Val_mscoco.zip) 
 
-When done the directory should contain
+When done the directory should contain:
 ```
 ../vqa2_data/
 |-- README.md
