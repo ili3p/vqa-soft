@@ -10,3 +10,13 @@ If you still want to use the torch features for some reason, then you can use th
 The only advantage is that the torch code is optimized, multi-threaded code that can use 3 GPUs to extract all features in less than one hour. 
 On the other hand, the caffe code on 3 GPUs takes about 15 hours. 
 
+
+In the end you should have `resnet_features` directory under the main `vqa-soft` directory, i.e.:
+```
+vqa-soft/resnet_features/
+|-- test2015/
+|-- train2014/
+`-- val2014/
+
+```
+
