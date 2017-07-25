@@ -373,12 +373,13 @@ if opt.repl then
       end
    end
 
-   -- show_imgs(que,img,ans,img_map,1)
+   show_imgs(que,img,ans,img_map,1)
    debugger.enter()
 end
 
 paths.mkdir(opt.log_dir .. opt.version .. '/')
 
+local train_log = io.open(opt.log_dir .. opt.version .. '/train_losses_'..dt..'.csv', 'a')
 
 while iter < opt.max_iter do
 
@@ -386,6 +387,7 @@ while iter < opt.max_iter do
 
    if iter%20 == 0 then
       collectgarbage()
+      train_log:flush()
    end
 
    if iter/nepo == 30 then
@@ -399,20 +401,30 @@ while iter < opt.max_iter do
    loss = loss[1]
    loss_avg = loss_avg ~= 0 and loss_avg*.95+loss*.05 or loss
 
+   train_log:write(strf('%.2f\t%.2f\n',loss_avg, loss))
 
-   xlua.log(strf('"%s" Epoch %.2f%% Training Loss: %.2f', opt.version, 100.0*iter/nepo, loss_avg), 3)
+   xlua.log(strf('"%s" Epoch %.2f%% Training Loss: %.2f Validation Loss: %.2f', opt.version, 100.0*iter/nepo, loss_avg, val_loss), 3)
    xlua.progress(iter, opt.max_iter, 4) 
 
+   if iter%opt.log_loss_every == 0 or iter%nepo == 0 then
+
+      if not opt.train_on_val then
+        val_loss = get_val_loss()
+      end
+
+      log_losses(dt, iter, loss_avg, val_loss)
+   end
    if iter/nepo > 1 and iter%(nepo/3) == 0 and eval_pool:hasjob() then
       eval_pool:synchronize()
    end
 
-   if iter/nepo >= opt.eval_after and iter%nepo == 0 then
+   if iter/nepo > opt.eval_after and iter%nepo == 0 then
       if not opt.train_on_val and opt.eval then
          eval(dt, iter)
       end
-      if iter/nepo >= opt.save_after then
+      if iter > opt.save_after then
          make_checkpoint(iter, optim_config)
       end
    end
 end
+train_log:close()
