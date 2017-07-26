@@ -2,7 +2,7 @@ Accompanying code for "[A Simple Loss Function for Improving the Convergence and
 
 The repo contains code for reproducing the paper's experiments and efficient GPU implementation of the proposed loss function for torch, pytorch, and caffe. 
 
-### Requirements
+## Requirements
 
 To run the experiments you would first need to install torch from [https://github.com/torch/distro/](https://github.com/torch/distro/). We used torch version from commit `5c1d3cfda8101123628a45e70435d545ae1bc771` but later versions probably would work too.
 
