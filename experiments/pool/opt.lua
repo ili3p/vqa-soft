@@ -4,7 +4,7 @@ return {
    eval           = true,
    log_loss_every = 350,
    save_dir       = './checkpoints/', 
-   save_after     = 15, -- in iterations
+   save_after     = 999999, -- in iterations
    eval_after     = 1, -- in epochs 
    criterion      = 'SoftClassNLLCriterion',
    checkpoint     = '',
