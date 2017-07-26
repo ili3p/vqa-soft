@@ -5,7 +5,7 @@ require'rnn'
 require'cunn'
 require'cudnn'
 require'optim'
-require'pretty-nn'
+-- require'pretty-nn'
 cudnn.benchmark = true
 cudnn.fastest = true 
 tds = require'tds'
