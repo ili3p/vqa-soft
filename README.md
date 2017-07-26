@@ -33,4 +33,5 @@ OptNet - Reducing memory usage in torch neural nets [https://github.com/fmassa/o
 Visdom for visualization [https://github.com/facebookresearch/visdom](https://github.com/facebookresearch/visdom).
 
 `pip install visdom
+
 luarocks install visdom`
