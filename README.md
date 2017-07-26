@@ -9,9 +9,11 @@ To run the experiments you would first need to install torch from [https://githu
 After installing torch you will need to install the following useful lua libraries
 
 C data structures for torch [https://github.com/torch/tds](https://github.com/torch/tds), so we can allocate data in C memory space instead of lua's and thus overcome lua's memory limit and garbage collection.
+
 `luarocks install tds`
 
 RNN lib for Torch [https://github.com/Element-Research/rnn](https://github.com/Element-Research/rnn) for mask zero lookuptable and other useful modules.
+
 `luarocks install rnn`
 
 
