@@ -36,11 +36,11 @@ Visdom for visualization [https://github.com/facebookresearch/visdom](https://gi
 pip install visdom
 luarocks install visdom
 ```
-### Adding loss function files
+## Adding loss function files
 
 
 
-### Running
+## Running
 
 First, head over the `image_preprocess` folder and follow the instructions there to extract feature tensors for MS COCO images. 
 
