@@ -37,13 +37,13 @@ pip install visdom
 luarocks install visdom
 ```
 
-## Installing loss function 
+## Installation
 
-We provide GPU implementation of the loss function for torch, pytorch, and caffe. 
+We provide GPU implementation of the loss function for *torch*, *pytorch*, and *caffe*. 
 cd to `loss_implementations` to read further instructions on how to add the loss function to your framwork's installation. 
 
 
-## Running
+## Experiments
 
 First, head over the `image_preprocess` folder and follow the instructions there to extract feature tensors for MS COCO images. 
 
