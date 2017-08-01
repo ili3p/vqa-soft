@@ -36,8 +36,11 @@ Visdom for visualization [https://github.com/facebookresearch/visdom](https://gi
 pip install visdom
 luarocks install visdom
 ```
-## Adding loss function files
 
+## Installing loss function 
+
+We provide GPU implementation of the loss function for torch, pytorch, and caffe. 
+cd to `loss_implementations` to read further instructions on how to add the loss function to your framwork's installation. 
 
 
 ## Running
